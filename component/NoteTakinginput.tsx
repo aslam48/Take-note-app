@@ -6,19 +6,18 @@ type Props = {
 }
 
 
-const NoteTakinginput: React.FC<Props> = ({saveNote}) => {
+export const NoteTakinginput: React.FC<Props> = ({saveNote}) => {
 const [text, setText] = useState<string>('')
 
   return (
-    <View>
-     
+    <>
       <TextInput multiline={true} style={styles.textinput} value={text} onChangeText={setText}/>
       <Button title='Save note' onPress={() => saveNote(text)}/>
-    </View>
+    </>
   )
 }
 
-export default NoteTakinginput
+ 
 
 
 const styles = StyleSheet.create({
