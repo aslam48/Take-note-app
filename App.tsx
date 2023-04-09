@@ -1,38 +1,25 @@
 import { StatusBar } from "expo-status-bar";
 import { useState } from "react";
 import { StyleSheet, Text, View, TextInput, Button } from "react-native";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import {NoteTakinginput} from "./component/NoteTakinginput";
+import { EditNoteScreen } from "./screens/EditNoteScreens";
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {HomeScreen} from "./screens/HomeScreen";
+import { RootStackParamList } from "./types";
+
 
 
 export default function App() {
-  const Stack = createNativeStackNavigator(); 
-  
-  const [shouldCreateNewNote, setshouldCreateNewNote] =
-    useState<boolean>(false);
-
-  const saveNote = async (text: string) => {
-    await AsyncStorage.setItem("note", text);
-  };
+  const Stack = createNativeStackNavigator<RootStackParamList>(); 
 
   return (
     <NavigationContainer>
-    <View style={styles.container}>
       <StatusBar style="auto" />
-      {shouldCreateNewNote ? (
-        <NoteTakinginput saveNote={saveNote} />
-      ) : (
-        <>
-          <Text>Home Screen</Text>
-          <Button
-            onPress={() => setshouldCreateNewNote(true)}
-            title="New Note"
-          />
-        </>
-      )}
-    </View>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component = {HomeScreen} />
+        <Stack.Screen name="EditNote" component = {EditNoteScreen} />
+    </Stack.Navigator>
     </NavigationContainer>
   );
 }
