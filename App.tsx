@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import {HomeScreen} from "./screens/HomeScreen";
 import { RootStackParamList } from "./types";
+import NewNoteButton from "./component/NewNoteButton";
 
 
 
@@ -17,7 +18,13 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="auto" />
       <Stack.Navigator>
-        <Stack.Screen name="Home" component = {HomeScreen} />
+        <Stack.Screen name="Home" component = {HomeScreen} 
+        options={{
+          headerTitle: "All notes",
+          headerRight: ()=> <NewNoteButton/>
+        }}
+     
+        />
         <Stack.Screen name="EditNote" component = {EditNoteScreen} />
     </Stack.Navigator>
     </NavigationContainer>

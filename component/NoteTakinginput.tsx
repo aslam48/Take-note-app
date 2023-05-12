@@ -3,6 +3,7 @@ import React, { useState } from 'react'
 
 type Props = {
     saveNote: (text: string) => void
+    noteId: string | undefined
 }
 
 
@@ -11,7 +12,9 @@ const [text, setText] = useState<string>('')
 
   return (
     <>
-      <TextInput multiline={true} style={styles.textinput} value={text} onChangeText={setText}/>
+      <TextInput multiline={true} style={styles.textinput} value={text} onChangeText={setText}
+      autoFocus={true}
+      />
       <Button title='Save note' onPress={() => saveNote(text)}/>
     </>
   )
